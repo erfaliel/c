@@ -69,9 +69,9 @@ void maxTableau( int* tableau, size_t tailleTableau, int max ) {
 
 void ordonnerTableau( int*tableau, size_t tailleTableau ) {
     int  i;
-    int a, b;
+    int a = 0, b = 0;
     do {
-        for( i = 0; i < tailleTableau; i++ ) {
+        for( i = 0; i < tailleTableau - 1; i++ ) {
             a = tableau[i];
             b = tableau[i + 1];
             if( b < a ) {
