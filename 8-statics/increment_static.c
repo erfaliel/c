@@ -10,7 +10,7 @@ int main( int argc, char** argv ) {
 }
 
 int increment( void ) {
-    static number = 0 ;
+    static number = 0 ; // static variables have scope beyond this block (as global variable)
     return ++number ;
 }
 

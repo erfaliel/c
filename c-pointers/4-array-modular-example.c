@@ -20,5 +20,7 @@ int main ( int argc, char** argv ) {
         printf( "Ordonner tableau : " );
         ordonnerTableau( tableau, taille_tableau );
         afficherTableau( tableau, taille_tableau );
+
+        return 0;
 }
 
