@@ -9,7 +9,7 @@ int main( int argc, char** argv )
     file = fopen( PATH, "r" ); /* open file to get descriptor on read mode only */
     if ( file != NULL )
     {
-        while ( one_char != EOF )
+        while ( one_char != '\n' )
         {
             one_char = fgetc( file ); /* fget read the char under the pointer and increment the pointer */
             printf( "Nous obenons le caractère : %c, ", one_char  ); 
@@ -29,7 +29,26 @@ int main( int argc, char** argv )
     file = fopen( PATH, "r" ); /* open file to get descriptor on read mode only */
     if ( file != NULL )
     {
-        while ( one_char != EOF)
+        while ( one_char != '\n')
+        {
+            one_char = fgetc( file );
+            printf( "%c", one_char );
+        }
+        printf( "\n" );
+        fclose( file ); /* close the file descriptor to freed memory */
+    }
+    else
+    {
+        printf( "Une erreur est survenue en ouvrant le fichier:  " );
+        printf( PATH ); printf( ".\n" );
+    }
+    /* All the file*/
+    printf( "The whole file --> " );
+    one_char = 0; /* one_char init otherwise it worth `\n` */
+    file = fopen( PATH, "r" ); /* open file to get descriptor on read mode only */
+    if ( file != NULL )
+    {
+        while ( one_char != EOF )
         {
             one_char = fgetc( file );
             printf( "%c", one_char );
@@ -43,7 +62,6 @@ int main( int argc, char** argv )
         printf( PATH ); printf( ".\n" );
     }
     
-
     return 0;
 
 }

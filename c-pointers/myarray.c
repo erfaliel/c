@@ -39,7 +39,7 @@ void maxTableau( int* tableau, size_t tailleTableau, int max ) {
     }
 }
 
-void ordonnerTableau( int*tableau, size_t tailleTableau ) {
+void ordonnerTableau( int* tableau, size_t tailleTableau ) {
     int  i;
     int a = 0, b = 0;
     do {
@@ -53,5 +53,29 @@ void ordonnerTableau( int*tableau, size_t tailleTableau ) {
             }
         }
     }while ( ( i + 1 ) < tailleTableau );
+}
+
+int valeurMaxTableau( int* tableau, size_t tailleTableau ) {
+    int max = 0;
+    int i;
+    for( i = 0; i < tailleTableau; i++ ) {
+        max = ( tableau[i] > max ) ? tableau[i] : max; /*ternary for affectation */
+    }
+    return max;
+}
+
+int* pointeurMaxTableau( int* tableau, size_t tailleTableau ) {
+    int max = 0;
+    int index = 0;
+    int i;
+    for( i = 0; i < tailleTableau; i++ ) {
+        if ( tableau[i] > max ) {
+            index = i;
+            max = tableau[i];
+        }
+    }
+    printf( "%d", index ); /*debug*/
+    return &tableau[index];
+    
 }
 

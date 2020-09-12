@@ -1,4 +1,3 @@
-❯ cat myarray.h
 #include<stdio.h>
 
 int sommeTableau( int* tableau, size_t tailleTableau);
