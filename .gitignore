@@ -1,4 +1,7 @@
 toto
+11-files/1-write-in-file/1-file-fputc
+11-files/1-write-in-file/2-file-fputs
+11-files/1-write-in-file/3-file-fprintf
 11-files/2-read-in-file/1-fgetc
 11-files/2-read-in-file/2-fgets
 11-files/2-read-in-file/3-fscanf
