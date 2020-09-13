@@ -2,12 +2,13 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct Player Player;
+typedef struct Player Player; /* def of new type struct of one player */
 struct Player
 {
     char tag[8]; /* tag's length is fixed for all player -> Stack memory */
     int age;
 };
+/* protoype of my own functions */
 void* allocatePlayers( Player* players, const int number_players );
 void initPlayers( Player* players, const int number_players );
 void printPlayers( Player* players, const int number_players );
@@ -16,18 +17,18 @@ void setPlayers( Player* players, const int number_players );
 
 int main( int argc, char** argv )
 {
-    Player* players = NULL;
+    Player* players = NULL; /* define an array of my own type Player */
     int number_players;
     printf( "Veuillez indiquer le nombre de joueur : " );
     scanf( "%d", &number_players );
-    players = allocatePlayers( players, number_players );
+    players = allocatePlayers( players, number_players ); /* allocate dynamicly array of Players */
     printPlayers( players, number_players );
-    setOnePlayer( &(players[1]), "Player1", 18 );
+    setOnePlayer( &(players[1]), "Player1", 18 ); /* test to set only the second Player into the array */
     printPlayers( players, number_players );
-    setPlayers( players, number_players ); 
+    setPlayers( players, number_players ); /* set the whole array of Players */
     printPlayers( players, number_players );
 
-    free( players ); 
+    free( players ); /* deallocate memory in the heap */
     
     return 0;
 }
