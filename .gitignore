@@ -8,4 +8,5 @@ toto
 11-files/3-fseek-in-file/1-fseek-continus-write
 11-files/3-fseek-in-file/1-fseek-async-read
 11-files/3-fseek-in-file/1-fseek-continus-write
-
+12-malloc/1-malloc_on_int
+12-malloc/2-malloc-arrayOfStruct
