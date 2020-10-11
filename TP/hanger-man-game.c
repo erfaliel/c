@@ -1,12 +1,15 @@
 #include<stdio.h>
 #include<ctype.h>
+#include "random-word.h"
+
+#define LINE_MAX_SIZE 26
+#define FILE_PATH "dico"
 
 typedef enum
 {
     FALSE, TRUE
 } Boolean;
 
-const char* word_game = "MARRON";
 int myStrlen( const char* string ) ;
 char* strAppend( char* string, char c );
 char readChar();
@@ -15,20 +18,26 @@ void checkParseWord( const char* found_chars, char* char_user, char c );
 char* buildWordUser( const char* word_game, char* word_user, char* found_chars );
 Boolean checkEndGame( const char* word_game, char* word_user, int* try );
 Boolean strComp( const char* string1, const char* string2 );
+void myStrSuprEndLine ( char* string );
 
 int main( int argc, char** argv )
 {
+    char word_game[LINE_MAX_SIZE] = ""; /* limit in size word, mandatory for fgets */
     char char_user = 0;         /* char user selection */
     Boolean is_in_str = FALSE;  /* good result detection */
     Boolean end_game = FALSE;
-    char found_chars[25] = "";  /* list of char for good result detection */
-    char word_user[25] = "";    /* Word found by user */
+    char found_chars[LINE_MAX_SIZE] = "";  /* list of char for good result detection by user*/
+    char word_user[LINE_MAX_SIZE] = "";    /* Build Word found by user from found_chars list */
     int try = 1;
-    printf( "Bienvenue dans le jeu du pendu, vous devez trouver le mot: MARRON.\n" );
+    /* char* test = "MARRON"; */
+    
+    wordGameFromFile( FILE_PATH, word_game ); /* wordGameFromFile library call */
+    myStrSuprEndLine( word_game ); /* suppress '\n' en char from file */
+    puts( "Bienvenue dans le jeu du pendu, vous devez trouver le mot cahché.\n" );
     do
     {
         printf( "Vous en êtes à votre essai %d sur 10.\n", try );
-        printf( "Veuillez saisir une lettre : " );
+        puts( "Veuillez saisir une lettre : " );
         char_user = readChar(); /* get the first char */
         /* printf( "vous aves saisi : %c.\n", char_user ); */
         is_in_str =    findChar( word_game, char_user )
@@ -79,7 +88,7 @@ Boolean findChar( const char* str, char c )
     return FALSE;
 }
 
-int myStrlen( const char* string ) {
+int myStrlen( const char* string ) { /* make MyStrLib */
 	int length = 0 ;
 	char current = 0 ;
 	do {
@@ -90,7 +99,7 @@ int myStrlen( const char* string ) {
 	return length-- ; /* we need to substract `\0` char */
 }
 
-char* strAppend( char* string, char c )
+char* strAppend( char* string, char c ) /* make MyStrLib */
 {
     int length = myStrlen( string );
     /*printf( "DEBUG: length string is %d | char is :%c\n", length, c );*/
@@ -100,7 +109,7 @@ char* strAppend( char* string, char c )
     return string;
 }
 
-Boolean strComp( const char* string1, const char* string2 )
+Boolean strComp( const char* string1, const char* string2 ) /* make MyStrLib */
 {
     int i = 0;
      if ( myStrlen( string1 ) != myStrlen( string2 ) ) /* fist try to compare length */
@@ -125,7 +134,7 @@ char* buildWordUser( const char* word_game, char* word_user, char* found_chars )
         checkParseWord( found_chars, &word_user[i], word_game[i] );
         i++;
     }
-    /* printf( "%s", word_user ); */
+    /* printf( "DEBUG: HMG::buildWordUser func > word user is %s\n", word_user ); */
     return word_user;
 }
 
@@ -154,6 +163,19 @@ Boolean checkEndGame( const char* word_game, char* word_user, int* try )
    *try = *(try) + 1;
    return FALSE;
 }
-
+void myStrSuprEndLine ( char* string ) /* make MyStrLib */
+{
+    int i = 0;
+    do
+    {
+        if ( *(string + i) == '\n' ) /* the same as string[i] == '\n' */
+        {
+            *(string + i) = '\0';
+            break;
+        }
+        i++;
+    } while ( *(string + i) != '\0' );
+   /* the same as string[strlen(string) - 1] = '\0'; 
+}
 
 
